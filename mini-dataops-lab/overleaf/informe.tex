@@ -1,0 +1,73 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\title{Laboratorio Práctico Clase 6: Implementando un Mini-Pipeline de DataOps}
+\author{Tu Nombre\\Curso: Modelos y Bases de Datos}
+\date{\today}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Informe del laboratorio: diseño, implementación y evidencias del mini-pipeline de DataOps usando AWS.
+\end{abstract}
+
+\section{Introducción}
+Explica objetivos y datasets usados:
+\begin{itemize}
+  \item SpotifyAudioFeaturesApril2019.csv
+  \item Global Music Artists.csv
+\end{itemize}
+
+\section{Diseño del pipeline}
+Describe el flujo ELT y el stack seleccionado (AWS). Incluye diagrama (puedes pegar una imagen).
+% Inserta diagrama aquí si quieres
+\begin{figure}[H]
+\centering
+\framebox{\parbox{0.9\linewidth}{Diagrama del pipeline: Lambda (ingest) -> S3 raw -> Glue (transform) -> S3 processed}}
+\caption{Diagrama conceptual del pipeline}
+\end{figure}
+
+\section{Implementación}
+\subsection{Almacenamiento (S3)}
+Explica la estructura de buckets y carpetas. \\
+\textbf{Captura 1:} Inserte aquí la captura del Bucket S3 mostrando la carpeta \texttt{raw} y \texttt{processed}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{s3_buckets.png}
+\caption{Buckets S3 (raw y processed).}
+\end{figure}
+
+\subsection{Ingesta (Lambda)}
+Describe la función Lambda y la programación. \\
+\textbf{Captura 2:} Inserte aquí la captura de la consola Lambda con el código y la prueba de ejecución.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{lambda_console.png}
+\caption{Lambda function console + CloudWatch log.}
+\end{figure}
+
+\subsection{Transformación (Glue)}
+Explicar Crawler y Glue Job. \\
+\textbf{Captura 3:} Inserte aquí la captura del Glue Job run con status \texttt{SUCCEEDED}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{glue_job.png}
+\caption{Glue Job run.}
+\end{figure}
+
+\section{Verificación de calidad de datos}
+Describir checks añadidos (p.ej. popularity entre 0 y 100).
+
+\section{Automatización y monitorización}
+Describir EventBridge/SNS y CloudWatch para alertas.
+
+\section{Reflexión}
+Respuesta a preguntas de la fase 5 (calidad, automatización, monitorización, colaboración).
+
+\section{Anexos}
+- Scripts: \texttt{ingest/lambda_function.py}, \texttt{transform/glue_job.py}.
+- Checklist de evidencias.
+\end{document}
